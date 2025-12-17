@@ -44,4 +44,3 @@ func ReceiveMessage(w http.ResponseWriter, r *http.Request, cc *CallbackCrypto, 
     }
     w.WriteHeader(http.StatusNoContent)
 }
-

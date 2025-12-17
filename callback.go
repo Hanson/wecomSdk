@@ -93,4 +93,3 @@ func (c *CallbackCrypto) Encrypt(plain []byte) (string, error) {
     mode.CryptBlocks(out, buf)
     return base64.StdEncoding.EncodeToString(out), nil
 }
-

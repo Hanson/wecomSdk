@@ -221,12 +221,12 @@ $env:WECOM_AGENT_ID="你的AgentID"
 $env:WECOM_APP_SECRET="你的Secret"
 $env:WECOM_TO_USER="demo_user"
 # 实时调用，禁用缓存：
-go test -v -run TestRealTokenAndAgent -count=1 github.com/Hanson/wecomSdk/wecom
+go test -v -run TestRealTokenAndAgent -count=1 github.com/Hanson/wecomSdk
 # 发送文本消息到指定成员：
-go test -v -run TestRealSendTextMessage -count=1 github.com/Hanson/wecomSdk/wecom
+go test -v -run TestRealSendTextMessage -count=1 github.com/Hanson/wecomSdk
 # 客户联系（外部联系人）列表与详情，并打印返回：
 $env:WECOM_USER_ID="demo_user"
-go test -v -run TestRealExternalContact -count=1 github.com/Hanson/wecomSdk/wecom
+go test -v -run TestRealExternalContact -count=1 github.com/Hanson/wecomSdk
 ```
 
 ## 本地模拟测试
@@ -235,8 +235,8 @@ go test -v -run TestRealExternalContact -count=1 github.com/Hanson/wecomSdk/weco
 ```bash
 go test -v ./...
 ```
-- 集成用例：`wecom/integration_test.go`
-- 令牌与消息：`wecom/client_test.go`
+- 集成用例：`integration_test.go`
+- 令牌与消息：`client_test.go`
 
 ## 注意事项
 - 所有接口使用 HTTPS、JSON、UTF-8
