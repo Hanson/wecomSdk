@@ -12,6 +12,10 @@
 - 客户联系：外部联系人列表与详情查询
 - 自包含本地模拟测试与真实接口测试（读取环境变量）
 
+## 交流群
+
+<img width="434" height="514" alt="image" src="https://github.com/user-attachments/assets/6d68a770-f0b1-44ff-a52c-0aff79c065c5" />
+
 ## 安装
 本仓库为本地模块，直接在你的代码中按模块名引用：
 
