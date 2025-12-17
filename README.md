@@ -205,7 +205,7 @@ _ = c.PostJSON(ctx, "/cgi-bin/externalcontact/get_corp_tag", wecom.externalGetCo
 WECOM_CORP_ID     企业CorpID
 WECOM_APP_SECRET  自建应用Secret
 WECOM_AGENT_ID    自建应用AgentID
-WECOM_TO_USER     用于接收消息的成员userid（示例：HanJun）
+WECOM_TO_USER     用于接收消息的成员userid（示例：demo_user）
 WECOM_USER_ID     内部成员userid，用于外部联系人列表（可与 WECOM_TO_USER 同步）
 ```
 
@@ -221,12 +221,12 @@ $env:WECOM_AGENT_ID="你的AgentID"
 $env:WECOM_APP_SECRET="你的Secret"
 $env:WECOM_TO_USER="demo_user"
 # 实时调用，禁用缓存：
-go test -v -run TestRealTokenAndAgent -count=1 wecomsdk/wecom
+go test -v -run TestRealTokenAndAgent -count=1 github.com/Hanson/wecomSdk/wecom
 # 发送文本消息到指定成员：
-go test -v -run TestRealSendTextMessage -count=1 wecomsdk/wecom
+go test -v -run TestRealSendTextMessage -count=1 github.com/Hanson/wecomSdk/wecom
 # 客户联系（外部联系人）列表与详情，并打印返回：
 $env:WECOM_USER_ID="demo_user"
-go test -v -run TestRealExternalContact -count=1 wecomsdk/wecom
+go test -v -run TestRealExternalContact -count=1 github.com/Hanson/wecomSdk/wecom
 ```
 
 ## 本地模拟测试
@@ -245,22 +245,9 @@ go test -v ./...
 - 不要在代码仓库提交真实密钥与令牌
  - 微信客服与客户联系模块需要额外权限；若返回 `48002` 表示无接口权限，`60020` 表示可信 IP 未配置
 
-## 变更日志
-- 2025-12-17 v0.4
-  - 新增统一调用约定：`GetJSON/PostJSON/CallJSON/GetJSONWithReq`
-  - 全量结构化类型命名按接口路径（含成员、部门、标签、客户联系、微信客服等）
-  - 新增微信客服模块示例与测试：账号列表、发消息、同步消息、会话状态、联系方式
-- 2025-12-17 v0.3
-  - 增加真实客户联系测试并打印返回
-  - 增加真实文本消息测试
-  - 增加真实令牌与应用信息测试，可信 IP 自动跳过
-- 2025-12-17 v0.2
-  - 扩展消息类型：Markdown/图片/文件/news
-  - 媒体上传支持 `multipart/form-data`
-  - 通讯录：用户/部门/标签完整 CRUD
-  - 应用信息查询与外部联系人基础接口
-- 2025-12-17 v0.1
-  - 初始化 SDK（令牌缓存、并发安全、通用请求封装、文本消息）
+## 版本与更新日志
+- 当前版本：`v0.0.1`
+- 每日更新详见 `CHANGELOG.md`
 
 ## 参考
 - 企业微信开放平台：开发前必读、接口调用流程与可信 IP 要求
