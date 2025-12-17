@@ -1,0 +1,9 @@
+bin/
+*.exe
+*.test
+*.out
+coverage/
+.DS_Store
+Thumbs.db
+*.log
+external_log.txt
