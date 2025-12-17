@@ -67,39 +67,38 @@ func TestOAAndMenuAndRaw(t *testing.T) {
     defer srv.Close()
     c, _ := NewClient(Config{CorpID: "id", CorpSecret: "secret", BaseURL: srv.URL})
     ctx := context.Background()
-    var app oaApprovalGetDetailResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/getapprovaldetail", oaApprovalGetDetailReq{SpNo: "sp1"}, &app)
-    var tpl oaApprovalGetTemplateDetailResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/gettemplatedetail", oaApprovalGetTemplateDetailReq{TemplateID: "tpl1"}, &tpl)
-    var cd checkinGetDataResp
-    _ = c.PostJSON(ctx, "/cgi-bin/checkin/getcheckindata", checkinGetDataReq{StartTime: 1, EndTime: 2, UserIDList: []string{"u1"}}, &cd)
-    var dd checkinGetDayDataResp
-    _ = c.PostJSON(ctx, "/cgi-bin/checkin/getdaydata", checkinGetDayDataReq{Date: 20240101, UserIDList: []string{"u1"}}, &dd)
-    var calAdd oaCalendarAddResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/add", oaCalendarAddReq{Organizer: "u1", Summary: "S"}, &calAdd)
-    var calGet oaCalendarGetResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/get", oaCalendarGetReq{CalID: calAdd.CalID}, &calGet)
-    var calUpd oaCalendarUpdateResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/update", oaCalendarUpdateReq{CalID: calAdd.CalID, Summary: "S2"}, &calUpd)
-    var calDel oaCalendarDelResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/del", oaCalendarDelReq{CalID: calAdd.CalID}, &calDel)
-    var schAdd oaScheduleAddResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/add", oaScheduleAddReq{CalID: calAdd.CalID, Organizer: "u1", Summary: "SS", StartTime: 1, EndTime: 2}, &schAdd)
-    var schGet oaScheduleGetResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/get", oaScheduleGetReq{ScheduleID: schAdd.ScheduleID}, &schGet)
-    var schUpd oaScheduleUpdateResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/update", oaScheduleUpdateReq{ScheduleID: schAdd.ScheduleID, Summary: "SS2"}, &schUpd)
-    var schDel oaScheduleDelResp
-    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/del", oaScheduleDelReq{ScheduleID: schAdd.ScheduleID}, &schDel)
-    var mCreate menuCreateResp
-    _ = c.PostJSON(ctx, "/cgi-bin/menu/create", menuCreateReq{AgentID: 1000001, Button: []menuButton{{Name: "A", Type: "click", Key: "K"}}}, &mCreate)
-    var mDel menuDeleteResp
+    var app OaApprovalGetDetailResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/getapprovaldetail", OaApprovalGetDetailReq{SpNo: "sp1"}, &app)
+    var tpl OaApprovalGetTemplateDetailResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/gettemplatedetail", OaApprovalGetTemplateDetailReq{TemplateID: "tpl1"}, &tpl)
+    var cd CheckinGetDataResp
+    _ = c.PostJSON(ctx, "/cgi-bin/checkin/getcheckindata", CheckinGetDataReq{StartTime: 1, EndTime: 2, UserIDList: []string{"u1"}}, &cd)
+    var dd CheckinGetDayDataResp
+    _ = c.PostJSON(ctx, "/cgi-bin/checkin/getdaydata", CheckinGetDayDataReq{Date: 20240101, UserIDList: []string{"u1"}}, &dd)
+    var calAdd OaCalendarAddResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/add", OaCalendarAddReq{Organizer: "u1", Summary: "S"}, &calAdd)
+    var calGet OaCalendarGetResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/get", OaCalendarGetReq{CalID: calAdd.CalID}, &calGet)
+    var calUpd OaCalendarUpdateResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/update", OaCalendarUpdateReq{CalID: calAdd.CalID, Summary: "S2"}, &calUpd)
+    var calDel OaCalendarDelResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/calendar/del", OaCalendarDelReq{CalID: calAdd.CalID}, &calDel)
+    var schAdd OaScheduleAddResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/add", OaScheduleAddReq{CalID: calAdd.CalID, Organizer: "u1", Summary: "SS", StartTime: 1, EndTime: 2}, &schAdd)
+    var schGet OaScheduleGetResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/get", OaScheduleGetReq{ScheduleID: schAdd.ScheduleID}, &schGet)
+    var schUpd OaScheduleUpdateResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/update", OaScheduleUpdateReq{ScheduleID: schAdd.ScheduleID, Summary: "SS2"}, &schUpd)
+    var schDel OaScheduleDelResp
+    _ = c.PostJSON(ctx, "/cgi-bin/oa/schedule/del", OaScheduleDelReq{ScheduleID: schAdd.ScheduleID}, &schDel)
+    var mCreate MenuCreateResp
+    _ = c.PostJSON(ctx, "/cgi-bin/menu/create", MenuCreateReq{AgentID: 1000001, Button: []MenuButton{{Name: "A", Type: "click", Key: "K"}}}, &mCreate)
+    var mDel MenuDeleteResp
     _ = c.GetJSON(ctx, "/cgi-bin/menu/delete", url.Values{"agentid": []string{"1000001"}}, &mDel)
-    var mGet menuGetResp
+    var mGet MenuGetResp
     _ = c.GetJSON(ctx, "/cgi-bin/menu/get", url.Values{"agentid": []string{"1000001"}}, &mGet)
     b, e, err := c.GetRaw(ctx, "/cgi-bin/media/get", nil)
     if err != nil { t.Fatal(err) }
     if e != nil { t.Fatal(e) }
     if string(b) != "BIN" { t.Fatalf("unexpected raw: %s", string(b)) }
 }
-

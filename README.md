@@ -16,7 +16,7 @@
 本仓库为本地模块，直接在你的代码中按模块名引用：
 
 ```go
-import "github.com/Hanson/wecomSdk/wecom"
+import "github.com/Hanson/wecomSdk"
 ```
 
 Go 版本：`go 1.21`
@@ -28,7 +28,7 @@ package main
 import (
     "context"
     "fmt"
-    "github.com/Hanson/wecomSdk/wecom"
+    "github.com/Hanson/wecomSdk"
 )
 
 func main() {

@@ -23,7 +23,7 @@ func TestRealExternalContact(t *testing.T) {
 		t.Fatalf("new client: %v", err)
 	}
 	ctx := context.Background()
-	var listOut externalContactListResp
+	var listOut ExternalContactListResp
 	err = c.GetJSON(ctx, "/cgi-bin/externalcontact/list", url.Values{"userid": []string{userID}}, &listOut)
 	if err != nil {
 		if e, ok := err.(*Error); ok && (e.Code == 60020 || e.Code == 48002) {
@@ -37,7 +37,7 @@ func TestRealExternalContact(t *testing.T) {
 	b1, _ := json.Marshal(listOut.ExternalUserID)
 	t.Logf("external_userid: %s", string(b1))
 	// get the first external contact
-	var getOut externalContactGetResp
+	var getOut ExternalContactGetResp
 	err = c.GetJSON(ctx, "/cgi-bin/externalcontact/get", url.Values{"external_userid": []string{listOut.ExternalUserID[0]}}, &getOut)
 	if err != nil {
 		if e, ok := err.(*Error); ok && (e.Code == 60020 || e.Code == 48002) {

@@ -1,6 +1,6 @@
 package wecom
 
-type userUpdateReq struct {
+type UserUpdateReq struct {
 	UserID       string `json:"userid"`
 	Name         string `json:"name,omitempty"`
 	Department   []int  `json:"department,omitempty"`
@@ -26,11 +26,11 @@ type userUpdateReq struct {
 	ExternalProfile  any      `json:"external_profile,omitempty"`
 }
 
-type userUpdateResp struct {
+type UserUpdateResp struct {
 	APIError
 }
 
-type userCreateReq struct {
+type UserCreateReq struct {
 	UserID         string `json:"userid"`
 	Name           string `json:"name"`
 	Department     []int  `json:"department"`
@@ -43,21 +43,21 @@ type userCreateReq struct {
 	MainDepartment int    `json:"main_department,omitempty"`
 }
 
-type userCreateResp struct {
+type UserCreateResp struct {
 	APIError
 }
 
-type userGetResp struct {
+type UserGetResp struct {
 	APIError
 	User
 }
 
-type userSimpleListReq struct {
+type UserSimpleListReq struct {
 	DepartmentID int `json:"department_id"`
 	FetchChild   int `json:"fetch_child"`
 }
 
-type userSimpleListResp struct {
+type UserSimpleListResp struct {
 	APIError
 	UserList []struct {
 		UserID string `json:"userid"`
@@ -65,35 +65,35 @@ type userSimpleListResp struct {
 	} `json:"userlist"`
 }
 
-type userListReq struct {
+type UserListReq struct {
 	DepartmentID int `json:"department_id"`
 	FetchChild   int `json:"fetch_child"`
 }
 
-type userListResp struct {
+type UserListResp struct {
 	APIError
 	UserList []User `json:"userlist"`
 }
 
-type userDeleteResp struct {
+type UserDeleteResp struct {
 	APIError
 }
 
 type messageSendResp = MessageSendResponse
 
-type mediaUploadReq struct {
+type MediaUploadReq struct {
 	Type     string
 	Filename string
 	Data     []byte
 }
 
-type mediaUploadResp = MediaUploadResponse
+type MediaUploadResp = MediaUploadResponse
 
-type agentGetReq struct {
+type AgentGetReq struct {
 	AgentID int `json:"agentid"`
 }
 
-type agentGetResp struct {
+type AgentGetResp struct {
 	APIError
 	AgentID       int    `json:"agentid"`
 	Name          string `json:"name"`
@@ -101,84 +101,84 @@ type agentGetResp struct {
 	Description   string `json:"description,omitempty"`
 }
 
-type externalContactListResp struct {
+type ExternalContactListResp struct {
 	APIError
 	ExternalUserID []string `json:"external_userid"`
 }
 
-type externalContactGetReq struct {
+type ExternalContactGetReq struct {
 	ExternalUserID string `json:"external_userid"`
 }
 
-type externalContactGetResp struct {
+type ExternalContactGetResp struct {
 	APIError
 	ExternalContact ExternalContact `json:"external_contact"`
 }
 
-type departmentCreateReq struct {
+type DepartmentCreateReq struct {
 	Name     string `json:"name"`
 	ParentID int    `json:"parentid,omitempty"`
 	Order    int    `json:"order,omitempty"`
 }
 
-type departmentCreateResp struct {
+type DepartmentCreateResp struct {
 	APIError
 	ID int `json:"id"`
 }
 
-type departmentUpdateReq struct {
+type DepartmentUpdateReq struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name,omitempty"`
 	ParentID int    `json:"parentid,omitempty"`
 	Order    int    `json:"order,omitempty"`
 }
 
-type departmentUpdateResp struct {
+type DepartmentUpdateResp struct {
 	APIError
 }
 
-type departmentDeleteResp struct {
+type DepartmentDeleteResp struct {
 	APIError
 }
 
-type departmentListResp struct {
+type DepartmentListResp struct {
 	APIError
 	Department []Department `json:"department"`
 }
 
-type tagCreateReq struct {
+type TagCreateReq struct {
 	TagName string `json:"tagname"`
 	TagID   int    `json:"tagid,omitempty"`
 }
 
-type tagCreateResp struct {
+type TagCreateResp struct {
 	APIError
 	TagID int `json:"tagid"`
 }
 
-type tagUpdateReq struct {
+type TagUpdateReq struct {
 	TagID   int    `json:"tagid"`
 	TagName string `json:"tagname"`
 }
 
-type tagUpdateResp struct {
+type TagUpdateResp struct {
 	APIError
 }
 
-type tagDeleteResp struct {
+type TagDeleteResp struct {
 	APIError
 }
 
-type tagListResp struct {
+type TagListResp struct {
 	APIError
 	TagList []Tag `json:"taglist"`
 }
 
-type tagGetReq struct {
+type TagGetReq struct {
 	TagID int `json:"tagid"`
 }
 
-type tagGetResp struct {
+type TagGetResp struct {
 	APIError
 	UserList []struct {
 		UserID string `json:"userid"`
@@ -186,29 +186,30 @@ type tagGetResp struct {
 	} `json:"userlist"`
 }
 
-type tagAddTagUsersReq struct {
+type TagAddTagUsersReq struct {
 	TagID   int      `json:"tagid"`
 	UserIDs []string `json:"userlist"`
 }
 
-type tagAddTagUsersResp struct {
+type TagAddTagUsersResp struct {
 	APIError
 }
 
-type tagDelTagUsersReq struct {
+type TagDelTagUsersReq struct {
 	TagID   int      `json:"tagid"`
 	UserIDs []string `json:"userlist"`
 }
+type TagDelTagUsersResp struct{ APIError }
 
-type tagAddTagUsersWithDeptReq struct {
+type TagAddTagUsersWithDeptReq struct {
 	TagID    int      `json:"tagid"`
 	UserIDs  []string `json:"userlist,omitempty"`
 	PartyIDs []int    `json:"partylist,omitempty"`
 }
 
-type tagAddTagUsersWithDeptResp struct{ APIError }
+type TagAddTagUsersWithDeptResp struct{ APIError }
 
-type externalAddContactWayReq struct {
+type ExternalAddContactWayReq struct {
 	Type       int      `json:"type"`
 	Scene      int      `json:"scene"`
 	Style      int      `json:"style,omitempty"`
@@ -221,42 +222,42 @@ type externalAddContactWayReq struct {
 	ExpiresIn  int      `json:"expires_in,omitempty"`
 }
 
-type externalAddContactWayResp struct {
+type ExternalAddContactWayResp struct {
 	APIError
 	ConfigID string `json:"config_id"`
 	QRCode   string `json:"qr_code,omitempty"`
 }
 
-type externalGetContactWayReq struct {
+type ExternalGetContactWayReq struct {
 	ConfigID string `json:"config_id"`
 }
-type externalGetContactWayResp struct {
+type ExternalGetContactWayResp struct {
 	APIError
 	ContactWay any `json:"contact_way"`
 }
 
-type externalListContactWayReq struct {
+type ExternalListContactWayReq struct {
 	Limit  int    `json:"limit"`
 	Cursor string `json:"cursor,omitempty"`
 }
-type externalListContactWayResp struct {
+type ExternalListContactWayResp struct {
 	APIError
 	ContactWay []any  `json:"contact_way"`
 	NextCursor string `json:"next_cursor,omitempty"`
 }
 
-type externalUpdateContactWayReq struct {
+type ExternalUpdateContactWayReq struct {
 	ConfigID string `json:"config_id"`
 	Remark   string `json:"remark,omitempty"`
 }
-type externalUpdateContactWayResp struct{ APIError }
+type ExternalUpdateContactWayResp struct{ APIError }
 
-type externalDelContactWayReq struct {
+type ExternalDelContactWayReq struct {
 	ConfigID string `json:"config_id"`
 }
-type externalDelContactWayResp struct{ APIError }
+type ExternalDelContactWayResp struct{ APIError }
 
-type externalGroupChatListReq struct {
+type ExternalGroupChatListReq struct {
 	StatusFilter int `json:"status_filter,omitempty"`
 	OwnerFilter  struct {
 		UserIDList []string `json:"userid_list"`
@@ -264,7 +265,7 @@ type externalGroupChatListReq struct {
 	Limit  int    `json:"limit,omitempty"`
 	Cursor string `json:"cursor,omitempty"`
 }
-type externalGroupChatListResp struct {
+type ExternalGroupChatListResp struct {
 	APIError
 	GroupChatList []struct {
 		ChatID string `json:"chat_id"`
@@ -272,15 +273,15 @@ type externalGroupChatListResp struct {
 	NextCursor string `json:"next_cursor,omitempty"`
 }
 
-type externalGroupChatGetReq struct {
+type ExternalGroupChatGetReq struct {
 	ChatID string `json:"chat_id"`
 }
-type externalGroupChatGetResp struct {
+type ExternalGroupChatGetResp struct {
 	APIError
 	GroupChat any `json:"group_chat"`
 }
 
-type kfAccountListResp struct {
+type KfAccountListResp struct {
 	APIError
 	AccountList []struct {
 		OpenKfID string `json:"open_kfid"`
@@ -288,7 +289,7 @@ type kfAccountListResp struct {
 	} `json:"account_list"`
 }
 
-type kfSendMsgReq struct {
+type KfSendMsgReq struct {
 	OpenKfID string `json:"open_kfid"`
 	ToUser   string `json:"touser"`
 	MsgType  string `json:"msgtype"`
@@ -297,69 +298,69 @@ type kfSendMsgReq struct {
 	} `json:"text,omitempty"`
 }
 
-type kfSendMsgResp struct {
+type KfSendMsgResp struct {
 	APIError
 	MsgID string `json:"msgid,omitempty"`
 }
 
-type kfSyncMsgReq struct {
+type KfSyncMsgReq struct {
 	Cursor   string `json:"cursor,omitempty"`
 	Token    string `json:"token,omitempty"`
 	Limit    int    `json:"limit,omitempty"`
 	OpenKfID string `json:"open_kfid,omitempty"`
 }
 
-type kfSyncMsgResp struct {
+type KfSyncMsgResp struct {
 	APIError
 	MsgList    []any  `json:"msg_list"`
 	HasMore    bool   `json:"has_more"`
 	NextCursor string `json:"next_cursor,omitempty"`
 }
 
-type kfServiceStateGetReq struct {
+type KfServiceStateGetReq struct {
 	OpenKfID       string `json:"open_kfid"`
 	ExternalUserID string `json:"external_userid"`
 }
 
-type kfServiceStateGetResp struct {
+type KfServiceStateGetResp struct {
 	APIError
 	ServiceState   int    `json:"service_state"`
 	ServicerUserID string `json:"servicer_userid,omitempty"`
 }
 
-type kfServiceStateTransReq struct {
+type KfServiceStateTransReq struct {
 	OpenKfID       string `json:"open_kfid"`
 	ExternalUserID string `json:"external_userid"`
 	ServiceState   int    `json:"service_state"`
 	ServicerUserID string `json:"servicer_userid,omitempty"`
 }
 
-type kfServiceStateTransResp struct{ APIError }
+type KfServiceStateTransResp struct{ APIError }
 
-type kfAddContactWayReq struct {
+type KfAddContactWayReq struct {
 	OpenKfID string `json:"open_kfid"`
 	Scene    int    `json:"scene,omitempty"`
 	Style    int    `json:"style,omitempty"`
 }
-type kfAddContactWayResp struct {
+type KfAddContactWayResp struct {
 	APIError
 	URL    string `json:"url,omitempty"`
 	QRCode string `json:"qr_code,omitempty"`
 }
-type kfGetContactWayReq struct {
+type KfGetContactWayReq struct {
 	OpenKfID string `json:"open_kfid"`
 }
-type kfGetContactWayResp struct {
+type KfGetContactWayResp struct {
 	APIError
 	URL    string `json:"url,omitempty"`
 	QRCode string `json:"qr_code,omitempty"`
 }
-type kfDelContactWayReq struct {
+type KfDelContactWayReq struct {
 	OpenKfID string `json:"open_kfid"`
 }
-type kfDelContactWayResp struct{ APIError }
+type KfDelContactWayResp struct{ APIError }
 
-type externalRemarkReq struct {
+type ExternalRemarkReq struct {
 	UserID         string   `json:"userid"`
 	ExternalUserID string   `json:"external_userid"`
 	Remark         string   `json:"remark,omitempty"`
@@ -369,14 +370,14 @@ type externalRemarkReq struct {
 	RemarkEmails   []string `json:"remark_emails,omitempty"`
 }
 
-type externalRemarkResp struct{ APIError }
+type ExternalRemarkResp struct{ APIError }
 
-type externalFollowUserListResp struct {
+type ExternalFollowUserListResp struct {
 	APIError
 	FollowUser []string `json:"follow_user"`
 }
 
-type externalCorpTag struct {
+type ExternalCorpTag struct {
 	GroupID   string `json:"group_id"`
 	GroupName string `json:"group_name"`
 	Tag       []struct {
@@ -386,7 +387,7 @@ type externalCorpTag struct {
 	} `json:"tag"`
 }
 
-type externalAddCorpTagReq struct {
+type ExternalAddCorpTagReq struct {
 	GroupID   string `json:"group_id,omitempty"`
 	GroupName string `json:"group_name,omitempty"`
 	Order     int    `json:"order,omitempty"`
@@ -395,166 +396,162 @@ type externalAddCorpTagReq struct {
 		Order int    `json:"order,omitempty"`
 	} `json:"tag,omitempty"`
 }
-type externalAddCorpTagResp struct {
+type ExternalAddCorpTagResp struct {
 	APIError
-	TagGroup externalCorpTag `json:"tag_group"`
+	TagGroup ExternalCorpTag `json:"tag_group"`
 }
 
-type externalEditCorpTagReq struct {
+type ExternalEditCorpTagReq struct {
 	ID    string `json:"id"`
 	Name  string `json:"name,omitempty"`
 	Order int    `json:"order,omitempty"`
 }
-type externalEditCorpTagResp struct{ APIError }
+type ExternalEditCorpTagResp struct{ APIError }
 
-type externalDelCorpTagReq struct {
+type ExternalDelCorpTagReq struct {
 	TagID   []string `json:"tag_id,omitempty"`
 	GroupID []string `json:"group_id,omitempty"`
 }
-type externalDelCorpTagResp struct{ APIError }
+type ExternalDelCorpTagResp struct{ APIError }
 
-type externalGetCorpTagReq struct {
+type ExternalGetCorpTagReq struct {
 	TagID   []string `json:"tag_id,omitempty"`
 	GroupID []string `json:"group_id,omitempty"`
 }
-type externalGetCorpTagResp struct {
+type ExternalGetCorpTagResp struct {
 	APIError
-	TagGroup []externalCorpTag `json:"tag_group"`
+	TagGroup []ExternalCorpTag `json:"tag_group"`
 }
 
-type userBatchDeleteReq struct {
+type UserBatchDeleteReq struct {
 	UserIDList []string `json:"useridlist"`
 }
-type userBatchDeleteResp struct{ APIError }
+type UserBatchDeleteResp struct{ APIError }
 
-type userConvertToOpenIDReq struct {
+type UserConvertToOpenIDReq struct {
 	UserID string `json:"userid"`
 }
-type userConvertToOpenIDResp struct {
+type UserConvertToOpenIDResp struct {
 	APIError
 	OpenID string `json:"openid"`
 }
 
-type userConvertToUserIDReq struct {
+type UserConvertToUserIDReq struct {
 	OpenID string `json:"openid"`
 }
-type userConvertToUserIDResp struct {
+type UserConvertToUserIDResp struct {
 	APIError
 	UserID string `json:"userid"`
 }
 
 // OA 审批
-type oaApprovalGetDetailReq struct {
+type OaApprovalGetDetailReq struct {
 	SpNo string `json:"sp_no"`
 }
-type oaApprovalGetDetailResp struct {
+type OaApprovalGetDetailResp struct {
 	APIError
 	ApprovalInfo any `json:"approval_info"`
 }
-type oaApprovalGetTemplateDetailReq struct {
+type OaApprovalGetTemplateDetailReq struct {
 	TemplateID string `json:"template_id"`
 }
-type oaApprovalGetTemplateDetailResp struct {
+type OaApprovalGetTemplateDetailResp struct {
 	APIError
 	Template any `json:"template"`
 }
 
 // 考勤打卡
-type checkinGetDataReq struct {
+type CheckinGetDataReq struct {
 	StartTime  int      `json:"starttime"`
 	EndTime    int      `json:"endtime"`
 	UserIDList []string `json:"useridlist"`
 }
-type checkinGetDataResp struct {
+type CheckinGetDataResp struct {
 	APIError
 	CheckinData []any `json:"checkindata"`
 }
-type checkinGetDayDataReq struct {
+type CheckinGetDayDataReq struct {
 	Date       int      `json:"date"`
 	UserIDList []string `json:"useridlist"`
 }
-type checkinGetDayDataResp struct {
+type CheckinGetDayDataResp struct {
 	APIError
 	DayData []any `json:"daydata"`
 }
 
 // 日历
-type oaCalendarAddReq struct {
+type OaCalendarAddReq struct {
 	Organizer string `json:"organizer"`
 	Summary   string `json:"summary"`
 }
-type oaCalendarAddResp struct {
+type OaCalendarAddResp struct {
 	APIError
 	CalID string `json:"cal_id"`
 }
-type oaCalendarUpdateReq struct {
+type OaCalendarUpdateReq struct {
 	CalID   string `json:"cal_id"`
 	Summary string `json:"summary,omitempty"`
 }
-type oaCalendarUpdateResp struct{ APIError }
-type oaCalendarGetReq struct {
+type OaCalendarUpdateResp struct{ APIError }
+type OaCalendarGetReq struct {
 	CalID string `json:"cal_id"`
 }
-type oaCalendarGetResp struct {
+type OaCalendarGetResp struct {
 	APIError
 	Calendar any `json:"calendar"`
 }
-type oaCalendarDelReq struct {
+type OaCalendarDelReq struct {
 	CalID string `json:"cal_id"`
 }
-type oaCalendarDelResp struct{ APIError }
+type OaCalendarDelResp struct{ APIError }
 
 // 日程
-type oaScheduleAddReq struct {
+type OaScheduleAddReq struct {
 	CalID     string `json:"cal_id"`
 	Organizer string `json:"organizer"`
 	Summary   string `json:"summary"`
 	StartTime int    `json:"start_time"`
 	EndTime   int    `json:"end_time"`
 }
-type oaScheduleAddResp struct {
+type OaScheduleAddResp struct {
 	APIError
 	ScheduleID string `json:"schedule_id"`
 }
-type oaScheduleUpdateReq struct {
+type OaScheduleUpdateReq struct {
 	ScheduleID string `json:"schedule_id"`
 	Summary    string `json:"summary,omitempty"`
 }
-type oaScheduleUpdateResp struct{ APIError }
-type oaScheduleGetReq struct {
+type OaScheduleUpdateResp struct{ APIError }
+type OaScheduleGetReq struct {
 	ScheduleID string `json:"schedule_id"`
 }
-type oaScheduleGetResp struct {
+type OaScheduleGetResp struct {
 	APIError
 	Schedule any `json:"schedule"`
 }
-type oaScheduleDelReq struct {
+type OaScheduleDelReq struct {
 	ScheduleID string `json:"schedule_id"`
 }
-type oaScheduleDelResp struct{ APIError }
+type OaScheduleDelResp struct{ APIError }
 
 // 应用菜单
-type menuButton struct {
+type MenuButton struct {
 	Type      string       `json:"type,omitempty"`
 	Name      string       `json:"name"`
 	Key       string       `json:"key,omitempty"`
 	URL       string       `json:"url,omitempty"`
-	SubButton []menuButton `json:"sub_button,omitempty"`
+	SubButton []MenuButton `json:"sub_button,omitempty"`
 }
-type menuCreateReq struct {
+type MenuCreateReq struct {
 	AgentID int          `json:"agentid"`
-	Button  []menuButton `json:"button"`
+	Button  []MenuButton `json:"button"`
 }
-type menuCreateResp struct{ APIError }
-type menuDeleteResp struct{ APIError }
-type menuGetReq struct {
+type MenuCreateResp struct{ APIError }
+type MenuDeleteResp struct{ APIError }
+type MenuGetReq struct {
 	AgentID int `json:"agentid"`
 }
-type menuGetResp struct {
+type MenuGetResp struct {
 	APIError
 	Menu any `json:"menu"`
-}
-
-type tagDelTagUsersResp struct {
-	APIError
 }

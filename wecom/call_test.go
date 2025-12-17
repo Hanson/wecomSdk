@@ -23,8 +23,8 @@ func TestGenericPostJSON(t *testing.T) {
 		t.Fatal(err)
 	}
 	ctx := context.Background()
-	var out userUpdateResp
-	err = c.PostJSON(ctx, "/cgi-bin/user/update", userUpdateReq{UserID: "u1", Name: "n1"}, &out)
+	var out UserUpdateResp
+	err = c.PostJSON(ctx, "/cgi-bin/user/update", UserUpdateReq{UserID: "u1", Name: "n1"}, &out)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -49,7 +49,7 @@ func TestGenericPostJSONErrorOutFilled(t *testing.T) {
 		APIError
 		Extra string `json:"extra"`
 	}
-	err = c.PostJSON(ctx, "/cgi-bin/user/update", userUpdateReq{UserID: "u1"}, &out)
+	err = c.PostJSON(ctx, "/cgi-bin/user/update", UserUpdateReq{UserID: "u1"}, &out)
 	if err == nil {
 		t.Fatal("expected error")
 	}
@@ -73,8 +73,8 @@ func TestGenericGetJSONWithReq(t *testing.T) {
 		t.Fatal(err)
 	}
 	ctx := context.Background()
-	var out userSimpleListResp
-	err = c.GetJSONWithReq(ctx, "/cgi-bin/user/simplelist", userSimpleListReq{DepartmentID: 1, FetchChild: 1}, &out)
+	var out UserSimpleListResp
+	err = c.GetJSONWithReq(ctx, "/cgi-bin/user/simplelist", UserSimpleListReq{DepartmentID: 1, FetchChild: 1}, &out)
 	if err != nil {
 		t.Fatal(err)
 	}
